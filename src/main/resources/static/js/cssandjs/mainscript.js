@@ -25,6 +25,9 @@ function prognozData(data){
     alert(helpData);
     for(let i=0;i<365;i++){
         for(let j=1;j<20;j++){
+        alert(helpData[i])
+        alert(data[i+j*365])
+        alert(data[i+(j-1)*365])
             helpData[i]=helpData[i]+data[i+j*365]-data[i+(j-1)*365]
         }
     }
