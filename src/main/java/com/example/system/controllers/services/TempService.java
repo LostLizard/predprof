@@ -67,7 +67,7 @@ public class TempService {
         return answ;
     }
     public double [] getAllTempsByDays(String cityName){
-        double answ[]=new double[20*12*365];
+        double answ[]=new double[20*365+1];
         Long cityId=cityService.findByName(cityName).getId();
         List<Temperature> temps=tempRepository.findAllByCityId(cityId);
         for(int i=0;i<temps.size();i++){

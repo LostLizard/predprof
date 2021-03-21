@@ -1,25 +1,31 @@
 var cityData;
 var mediansData;
 function getCityData(cityId){
-    let url="/tem?cityId="+cityId;
+    let url="/day?cityId="+cityId;
     let x=new XMLHttpRequest();
     x.open("GET",url,true);
     x.send(null);
     x.onload=function(){
         if(x.status==200){
+            alert("пришло");
             cityData=prognozData(parser(x.responseText));
                  alert(cityData.length);
                  alert(cityData);
                  alert(cityData[364]);
         }
+        else {
+        }
+
     }
 }
 function parser(data){
     let help=data.split("#");
     let secondData;
+    alert(help.length);
     for(let i=0;i<help.length;i++){
-        secondData[i/20.0][i%20]=help[i];
+        secondData[i/20][i%20]=help[i];
     }
+    alert("parsed");
 }
 function prognozData(data){
     let helpData;
