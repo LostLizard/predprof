@@ -9,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Service
 public class TempService {
     @Autowired
     private final TempRepository tempRepository;
+
+    @Autowired
+    CityService cityService;
 
     @Autowired
     public TempService(TempRepository tempRepository) {
@@ -24,5 +28,38 @@ public class TempService {
     public void addTemp(float val, Date day,Long cityId){
         Temperature t =new Temperature(val,day,cityId);
         tempRepository.save(t);
+    }
+    public double [] getAllTempsByYears(String cityName){
+        double answ[]=new double[20];
+        Long cityId=cityService.findByName(cityName).getId();
+        List<Temperature> temps=tempRepository.findAllByCityId(cityId);
+        int idx;
+        int prevIdx=0;
+        double temp=0;
+        for(int i=0;i<temps.size();i++){
+            idx=i/360;
+            if(idx!=prevIdx||i==temps.size()-1){
+                prevIdx=idx;
+                answ[idx-1]=temp/360;
+            }
+        }
+        return answ;
+    }
+
+    public double [] getAllTempsByMounths(String cityName){
+        double answ[]=new double[20*12];
+        Long cityId=cityService.findByName(cityName).getId();
+        List<Temperature> temps=tempRepository.findAllByCityId(cityId);
+        int idx;
+        int prevIdx=0;
+        double temp=0;
+        for(int i=0;i<temps.size();i++){
+            idx=i/360;
+            if(idx!=prevIdx||i==temps.size()-1){
+                prevIdx=idx;
+                answ[idx-1]=temp/360;
+            }
+        }
+        return answ;
     }
 }
