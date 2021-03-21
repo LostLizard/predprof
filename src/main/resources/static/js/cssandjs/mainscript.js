@@ -8,10 +8,11 @@ function getCityData(cityId){
     x.onload=function(){
         if(x.status==200){
             let dayData=x.responseText.split("#");
+        alert( dayData.indexOf(NaN))
             cityData=prognozData(dayData);
          //   mediansData=getMedians(dayData);
                  alert(cityData.length);
-                 alert(cityData);
+                 aert(cityData);
                  alert(cityData[364]);
         }
         else {
@@ -25,9 +26,6 @@ function prognozData(data){
     alert(helpData);
     for(let i=0;i<365;i++){
         for(let j=1;j<20;j++){
-        alert(helpData[i])
-        alert(data[i+j*365])
-        alert(data[i+(j-1)*365])
             helpData[i]=helpData[i]+data[i+j*365]-data[i+(j-1)*365]
         }
     }
