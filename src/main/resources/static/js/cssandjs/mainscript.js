@@ -2,6 +2,7 @@ var cityData=new Array(365).fill(0);
 var mediansData;
 function getCityData(){
     let cityId=document.getElementById("id").value;
+    let day=document.getElementById("day").value;
     let url="/day?cityId="+cityId;
     let x=new XMLHttpRequest();
     x.open("GET",url,true);
@@ -10,10 +11,10 @@ function getCityData(){
         if(x.status==200){
             let dayData=x.responseText.split("#");
             cityData=prognozData(dayData);
-            alert("Завтра "+Math.round(cityData[0]));
+            alert("Завтра "+Math.round(cityData[day]));
             let str="";
             for(let i=0;i<7;i++){
-                str=str+Math.round(cityData[i])+" ";
+                str=str+Math.round(cityData[day+i])+" ";
             }
             alert("Следующая неделя "+str);
          //   mediansData=getMedians(dayData);
