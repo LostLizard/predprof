@@ -16,7 +16,8 @@ public class MainController {
 
     @GetMapping("/")
     public String home() {
-        tempService.addTemp(0,null,1l);
+        WorkWithData w = new WorkWithData();
+
         return "hello";
     }
     @GetMapping("/day")
