@@ -1,6 +1,6 @@
-import React, {useCallback} from 'react';
 import MetaTags from 'react-meta-tags';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React, {useCallback} from 'react';
 
 export const Information = () => {
   const getting_data = async(url) => {
