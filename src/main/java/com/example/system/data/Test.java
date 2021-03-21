@@ -7,7 +7,7 @@ import java.util.List;
 public class Test {
     public static void main(String[] args) {
         List<Float> list = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("D:\\predprof\\src\\main\\java\\com\\example\\system\\data\\Алмазный.txt"));){
+        try (BufferedReader reader = new BufferedReader(new FileReader(""));){
             String strCurrentLine;
             reader.readLine();
             while ((strCurrentLine = reader.readLine()) != null) {
