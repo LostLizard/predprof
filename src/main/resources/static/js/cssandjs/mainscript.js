@@ -1,17 +1,21 @@
 var cityData;
 var mediansData;
 function getCityData(cityId){
-    let url="/tem?cityId="+cityId;
+    let url="/day?cityId="+cityId;
     let x=new XMLHttpRequest();
     x.open("GET",url,true);
     x.send(null);
     x.onload=function(){
         if(x.status==200){
+            alert("пришло");
             cityData=prognozData(parser(x.responseText));
                  alert(cityData.length);
                  alert(cityData);
                  alert(cityData[364]);
         }
+        else {
+        }
+
     }
 }
 function parser(data){

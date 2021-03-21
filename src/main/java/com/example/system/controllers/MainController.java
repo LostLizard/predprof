@@ -21,15 +21,13 @@ public class MainController {
 
     @GetMapping("/")
     public String home() {
-        ArrayList<Float> temps = WorkWithData.takeGoodList("/media/nikita/Samsung_T5/sharedFiles/system/src/main/java/com/example/system/data/Алмазный.txt");
-        for (int i = 0; i < temps.size(); i++) {
-            tempService.addTemp(temps.get(i), null, 1l);
-        }
-        return "hello";
+
+
+        return "page";
     }
 
     @GetMapping("/day")
-    public ResponseEntity<String> day(@RequestParam(value = "city") String city) {
+    public ResponseEntity<String> day(@RequestParam(value = "cityId") String city) {
         double[] answ = tempService.getAllTempsByDays(city);
         String answer = "";
         for (int i = 0; i < answ.length; i++) {
@@ -38,6 +36,7 @@ public class MainController {
                 answer += "#";
             }
         }
+        //System.out.println(answer);
         return new ResponseEntity<String>(answer, HttpStatus.OK);
     }
 
