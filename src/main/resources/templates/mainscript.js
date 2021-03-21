@@ -15,11 +15,11 @@ function getCityData(cityId){
     }
 }
 function parser(data){
-    let help=data.split("#");
-    let secondData;
-    for(let i=0;i<help.length;i++){
-        secondData[i/20.0][i%20]=help[i];
-    }
+   let ms=new Array[20];
+   for(let i=0;i<20;i++){
+       ms[i]=data.substring(i*20,(i+1)*20).split("#");
+   }
+   return ms;
 }
 function prognozData(data){
     let helpData;
