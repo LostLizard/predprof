@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkWithData {
-    public static ArrayList<Float> takeGoodList(String fileName){
+    public ArrayList<Float> takeGoodList(String fileName){
         ArrayList<Float> list = new ArrayList<Float>();
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName));){
             String strCurrentLine;
