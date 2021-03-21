@@ -38,9 +38,11 @@ public class TempService {
         double temp=0;
         for(int i=0;i<temps.size();i++){
             idx=i/360;
+            temp+= temps.get(i).getTemp();
             if(idx!=prevIdx||i==temps.size()-1){
                 prevIdx=idx;
                 answ[idx-1]=temp/360;
+                temp=0;
             }
         }
         return answ;
@@ -55,10 +57,21 @@ public class TempService {
         double temp=0;
         for(int i=0;i<temps.size();i++){
             idx=i/360;
+            temp+= temps.get(i).getTemp();
             if(idx!=prevIdx||i==temps.size()-1){
                 prevIdx=idx;
                 answ[idx-1]=temp/360;
+                temp=0;
             }
+        }
+        return answ;
+    }
+    public double [] getAllTempsByDays(String cityName){
+        double answ[]=new double[20*12*365];
+        Long cityId=cityService.findByName(cityName).getId();
+        List<Temperature> temps=tempRepository.findAllByCityId(cityId);
+        for(int i=0;i<temps.size();i++){
+            answ[i]=temps.get(i).getTemp();
         }
         return answ;
     }
