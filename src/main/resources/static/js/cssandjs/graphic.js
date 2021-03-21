@@ -1,4 +1,5 @@
 import React, {useCallback} from 'react';
+import MetaTags from 'react-meta-tags';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export const Information = () => {
@@ -18,10 +19,25 @@ export const Information = () => {
   const portoviy = async(event) => {getting_data('/portoviy')}
   const primorskiy = async(event) => {getting_data('/primorskiy')}
 
-  var showValues = [{date: 12, temp: 2, pv: 2400, amt: 2400},
-                {date: 13, temp: 15, pv: 2400, amt: 2400},
-                {date: 14, temp: 37, pv: 2400, amt: 2400},
-                {date: 25, temp: 114, pv: 2400, amt: 2400}]
+
+  const dates = JSON.parse(localStorage.getItem('days'));
+  console.log(dates);
+
+  var showValues = []
+  for (let i = 1; i < dates; i++) {
+    showValues.push({date: i, temp: i*3, pv: 2400, amt: 2400})
+  }
+
+  const Cnange_time = async(days) => {
+    localStorage.setItem('days', JSON.stringify(365 - days));
+  }
+
+
+  const Change_on_day = async(event) => {Cnange_time(1)};
+  const Change_on_week = async(event) => {Cnange_time(7)};
+  const Change_on_month = async(event) => {Cnange_time(28)};
+
+
   return (
     <div>
     <MetaTags>
@@ -40,6 +56,11 @@ export const Information = () => {
         <XAxis dataKey="date"/>
         <YAxis dataKey="temp"/>
       </LineChart>
+    </div>
+    <div className="input-time-form">
+        <input type="submit" value="день" onClick = {Change_on_day}/>
+        <input type="submit" value="неделя" onClick = {Change_on_week}/>
+        <input type="submit" value="месяц" onClick = {Change_on_month}/>
     </div>
     </div>
   )
