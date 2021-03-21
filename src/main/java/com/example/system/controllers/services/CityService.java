@@ -3,6 +3,7 @@ package com.example.system.controllers.services;
 
 
 
+import com.example.system.controllers.enteties.City;
 import com.example.system.controllers.repositories.CityRepository;
 import com.example.system.controllers.repositories.TempRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,8 @@ public class CityService {
     @Autowired
     public CityService(CityRepository cityRepository) {
         this.cityRepository= cityRepository;
+    }
+    City findByName(String name){
+        return cityRepository.findByName(name);
     }
 }

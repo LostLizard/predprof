@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 @Transactional
 public interface TempRepository extends JpaRepository<Temperature, Long> {
-
+    List<Temperature> findAllByCityId(Long cityId);
 }
