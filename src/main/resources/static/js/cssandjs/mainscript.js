@@ -1,7 +1,7 @@
 var cityData;
 var mediansData;
 function getCityData(cityId){
-    let url="/tem?cityId="+cityId;
+    let url="/day?cityId="+cityId;
     let x=new XMLHttpRequest();
     x.open("GET",url,true);
     x.send(null);
@@ -14,6 +14,9 @@ function getCityData(cityId){
                  alert(cityData);
                  alert(cityData[364]);
         }
+        else {
+        }
+
     }
 }
 function prognozData(data){
@@ -29,8 +32,15 @@ function prognozData(data){
     }
     return nextData;
 }
-function getMedians(data){
-   // for(let i=0;i<data.length;i++){
-
-   // }
+function getMedians(cityId){
+    let url="/med?cityId="+cityId;
+    let x=new XMLHttpRequest();
+    x.open("GET",url,true);
+    x.send(null);
+    x.onload=function(){
+        if(x.status==200){
+           mediansData=parser(x.responseText);
+           alert(mediansData);
+        }
+    }
 }
