@@ -19,10 +19,12 @@ function getCityData(cityId){
     }
 }
 function parser(data){
+    alert("parsing");
    let ms=new Array[20];
    for(let i=0;i<20;i++){
        ms[i]=data.substring(i*20,(i+1)*20).split("#");
    }
+    alert("parsed");
    return ms;
 }
 function prognozData(data){
