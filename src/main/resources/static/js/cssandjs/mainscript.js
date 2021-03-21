@@ -1,4 +1,4 @@
-var cityData;
+var cityData=new Array(365).fill(0);
 var mediansData;
 function getCityData(cityId){
     let url="/day?cityId="+cityId;
@@ -20,17 +20,19 @@ function getCityData(cityId){
     }
 }
 function prognozData(data){
-    let helpData;
-    let nextData;
+    let helpData=new Array(365).fill(0);
+    alert(data);
+    alert(helpData);
     for(let i=0;i<365;i++){
         for(let j=1;j<20;j++){
             helpData[i]=helpData[i]+data[i+j*365]-data[i+(j-1)*365]
         }
     }
+    alert(helpData);
     for(let i=0;i<data[0].length;i++){
         helpData[i]=helpData[i]/(19);
     }
-    return nextData;
+    return helpData;
 }
 function getMedians(cityId){
     let url="/med?cityId="+cityId;
